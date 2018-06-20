@@ -4,29 +4,58 @@
 
 const path = require('path')
 
+var os = require('os');
+var localIp;
+var interfaces = os.networkInterfaces();
+
+(()=>
+{
+  for (var netName in interfaces)
+  {
+    var netList = interfaces[netName];
+    for (var i = 0; i < netList.length; i++)
+    {
+      var netItem = netList[i];
+      if (netItem.family == 'IPv4' && netItem.address != '127.0.0.1' && !netItem.internal)
+      {
+        localIp = netItem.address;
+      }
+    }
+  }
+})()
+
 module.exports = {
   dev: {
 
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/api': {
+        changeOrigin: true,
+        target: 'http://test.service.xq.mms.yundingdang.com',
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    },
 
     // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-    autoOpenBrowser: false,
+    host: localIp, // can be overwritten by process.env.HOST
+    port: 8888, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    inline:true,
+    autoOpenBrowser: true,
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
     /**
      * Source Maps
      */
 
     // https://webpack.js.org/configuration/devtool/#development
-    devtool: 'cheap-module-eval-source-map',
+//    devtool: 'cheap-module-eval-source-map',
+    devtool: 'eval-source-map',
 
     // If you have problems debugging vue-files in devtools,
     // set this to false - it *may* help
@@ -49,7 +78,7 @@ module.exports = {
      * Source Maps
      */
 
-    productionSourceMap: true,
+    productionSourceMap: false,
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
 
