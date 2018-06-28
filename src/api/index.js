@@ -6,14 +6,21 @@ import qs from 'qs';
 import *as g from '../jslib/global';
 import router from '../router';
 import web_config from '../jslib/config/config';
+import {Loading} from 'element-ui';
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? web_config.devServer : web_config.server;
-axios.defaults.timeout = 20000;
+axios.defaults.timeout = web_config.timeout;
+axios.defaults.withCredentials = true;
 
 //添加一个请求拦截器
 axios.interceptors.request.use(config=>
 {
+  let loading = Loading.service({
+    fullscreen: true,
+    text: '拼命加载中...'
+  });
+
   if (config.method === 'post')
   {
     config.data = qs.stringify(config.data);
@@ -22,15 +29,18 @@ axios.interceptors.request.use(config=>
 }, error=>
 {
   // Do something with request error
+  closeLoading();
   return Promise.reject(error);
 });
 
 // 添加一个响应拦截器
 axios.interceptors.response.use(function (response)
 {
+  closeLoading();
+
   if (response.data && response.data.code)
   {
-    if (parseInt(response.data.code) === 4005)
+    if (parseInt(response.data.code) === web_config.unLoginCode)
     {//未登录
 
       //更新sessionStorage登录状态(登出)
@@ -43,7 +53,8 @@ axios.interceptors.response.use(function (response)
         }
       })
     }
-    if (parseInt(response.data.code) !== 2000)
+
+    if (parseInt(response.data.code) !== web_config.successCode)
     {//接口异常
       return Promise.reject(response.data)
     }
@@ -51,8 +62,59 @@ axios.interceptors.response.use(function (response)
   return response;
 }, function (error)
 {
+  closeLoading();
   // Do something with response error
-  console.log('网络异常');
+  if (error && error.response)
+  {
+    switch (error.response.status)
+    {
+      case 400:
+        error.message = '请求错误'
+        break
+
+      case 401:
+        error.message = '未授权，请登录'
+        break
+
+      case 403:
+        error.message = '拒绝访问'
+        break
+
+      case 404:
+        error.message = `请求地址出错: ${error.response.config.url}`
+        break
+
+      case 408:
+        error.message = '请求超时'
+        break
+
+      case 500:
+        error.message = '服务器内部错误'
+        break
+
+      case 501:
+        error.message = '服务未实现'
+        break
+
+      case 502:
+        error.message = '网关错误'
+        break
+
+      case 503:
+        error.message = '服务不可用'
+        break
+
+      case 504:
+        error.message = '网关超时'
+        break
+
+      case 505:
+        error.message = 'HTTP版本不受支持'
+        break
+
+      default:
+    }
+  }
   return Promise.reject(error);
 });
 
@@ -68,3 +130,8 @@ export const GET = (url, params) =>
   return axios.get(url, {params: params}).then(res => res.data)
 }
 
+function closeLoading()
+{
+  let loading = Loading.service({});
+  loading.close();
+}

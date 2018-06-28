@@ -8,6 +8,8 @@ Vue.use(VueRouter)
 
 import Index from '../components/index/index.vue';
 import Login from '../components/login/login.vue';
+import QrCode from '../components/qrCode/qrCode.vue';
+import FindCode from '../components/findCode/findCode.vue';
 
 let router = new VueRouter({
   mode: 'history',
@@ -23,6 +25,18 @@ let router = new VueRouter({
       name: "登录页",
       component: Login,
       meta: {requireLogin: false}
+    },
+    {
+      path: '/qrcode',
+      name: "我的二维码",
+      component: QrCode,
+      meta: {requireLogin: true}
+    },
+    {
+      path: '/findcode',
+      name: "查找二维码",
+      component: FindCode,
+      meta: {requireLogin: true}
     }
   ]
 })
@@ -30,6 +44,7 @@ let router = new VueRouter({
 router.beforeEach((to, from, next) =>
 {
   console.log('导航守卫--执行')
+  console.log(to.fullPath.replace('/',''))
   if (to.meta.requireLogin)
   {
     if (g.utils.getSessionData('isLogin'))
@@ -37,10 +52,10 @@ router.beforeEach((to, from, next) =>
       next();
     }
     else
-    {//未登录,跳登录,再回调当前页
+    {//未登录,跳登录页,再回调当前页
       next({
         path: '/login',
-        query: {redirect: to.fullPath}
+        query: {redirect: to.fullPath.replace('/','')}
       })
     }
   }

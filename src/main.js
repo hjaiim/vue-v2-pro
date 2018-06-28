@@ -5,15 +5,22 @@ import router from './router/index';
 /**
  * 引入自定义ui库
  */
-import hjaiUI from './components/common/hjaiUI/index'
+import hjaiUI from './components/common/hjaiUI/index';
 Vue.use(hjaiUI);
 
 /**
  * 挂全局方法
  */
-import * as g from './jslib/global'
-window.g = g;
+import * as g from './jslib/global';
+Vue.prototype.GLOBAL = g;
+setWindowAttribute('g', g);
 
+/**
+ * 挂工具类方法
+ */
+import * as utils from 'hjai-utils/dist/utils.min.js';
+Vue.prototype.utils = utils;
+setWindowAttribute('utils', utils);
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -26,3 +33,20 @@ new Vue({
   render: h => h(App),
   router,
 }).$mount('#app')
+
+/**
+ * 挂载window(本地开发)
+ */
+function setWindowAttribute($attr, $value)
+{
+  if (typeof $attr !== 'string' || typeof $value !== 'object')
+  {
+    throw new Error('The type of the parameter is not expected');
+  }
+
+  if (process.env.NODE_ENV === 'development')
+  {
+    window[$attr] = $value;
+  }
+}
+

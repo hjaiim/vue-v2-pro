@@ -1,0 +1,19 @@
+[
+  {
+    "id": "qrcode",
+    "name": "商品二维码管理",
+    "icon": "logo",
+    "nav": [
+      {
+        "name": "我的二维码",
+        "path": "/qrcode",
+        "highLightList": ["/qrcode"]
+      },
+      {
+        "name": "查询二维码",
+        "path": "/findcode",
+        "highLightList": ["/qrcode"]
+      }
+    ]
+  }
+]

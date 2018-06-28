@@ -12,6 +12,7 @@
   import * as g from '@/jslib/global';
   export default{
     created(){
+      console.log(this.$router.push({}))
       console.log(this.$route.query.redirect)
     },
     data(){

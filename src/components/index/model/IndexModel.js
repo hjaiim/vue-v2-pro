@@ -4,6 +4,7 @@
 
 let _list = [];
 let _hash = Object.create(null);
+let _total = 1;
 export default class IndexModel {
   constructor()
   {
@@ -19,6 +20,11 @@ export default class IndexModel {
         this.add(item);
       }
     }
+    if ($obj['resultPageList'] && $obj['resultPageList']['total'])
+    {
+      _total = $obj['resultPageList']['total'];
+    }
+
   }
 
   add($item)
@@ -36,9 +42,15 @@ export default class IndexModel {
     return _list
   }
 
+  get total()
+  {
+    return _total
+  }
+
   reset()
   {
     _list = [];
+    _total = 1;
   }
 }
 

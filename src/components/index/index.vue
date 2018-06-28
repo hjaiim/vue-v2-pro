@@ -1,15 +1,20 @@
 <template>
-  <div>
-    <common-nav></common-nav>
+  <main-layout>
     <el-table :data="tableData" stripe style="width: 100%">
       <el-table-column prop="title" label="标题" width="180"></el-table-column>
-      <el-table-column prop="content" label="内容" width="180"></el-table-column>
+      <el-table-column prop="content" label="内容" width="300" :show-overflow-tooltip="true"></el-table-column>
       <el-table-column prop="time" label="日期" width="180"></el-table-column>
     </el-table>
-  </div>
+    <el-pagination @size-change="handleSizeChange"
+                   @current-change="handleCurrentChange"
+                   :current-page='currentPage'
+                   :page-size="10" layout="prev,pager,next,jumper,sizes"
+                   :total="total" background>
+    </el-pagination>
+  </main-layout>
 </template>
 <script type="text/ecmascript-6">
-  import CommonNav from '@/components/common/nav/commonNav';
+  import MainLayout from '@/components/common/mainLayout';
   import API from '../../api/api_index';
   import IndexModel from './model/IndexModel';
   export default{
@@ -20,21 +25,18 @@
       return {
         text: '',
         model: new IndexModel(),
-        tableData: [{
-          title: '1',
-          content: '防守打法',
-          time: '2018-19-12'
-        }]
+        tableData: [],
+        currentPage: 1,
+        total: 1
       }
     },
     components: {
-      CommonNav
+      MainLayout
     },
     watch: {},
     methods: {
       messageData()
       {
-        this.$loading()
         let messageParams = {
           page: 1,
           pageSize: 10,
@@ -43,23 +45,30 @@
         }
         API.message(messageParams).then((result)=>
         {
-          this.$loading().close();
           this.model.update(result.data);
           this.initData();
         }).catch((error)=>
         {
-          console.log('err-index');
-          console.log(error);
+          console.log(error.message);
         })
       },
       initData()
       {
         this.tableData = this.model.list;
+        this.total = this.model.total;
+      },
+      handleSizeChange(val)
+      {
+        console.log(`每页${val}条`);
+      },
+      handleCurrentChange(val)
+      {
+        console.log(`当前页:${val}`);
       }
     }
   }
 
 </script>
-<style type="text/css" lang="sass" rel="stylesheet/css" scoped>
+<style type="text/css" lang="scss" rel="stylesheet/scss" scoped>
 
 </style>

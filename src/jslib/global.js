@@ -1,9 +1,12 @@
 /**
  * Created by haojun on 2018/5/22.
  */
-import * as model from './model/allModel';
+import * as models from './model/models';
 import utils from './kit/utils';
+import fun from './kit/fun';
+
 export {
-  model,
-  utils
+  models,
+  utils,
+  fun
 };

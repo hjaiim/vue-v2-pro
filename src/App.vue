@@ -12,36 +12,23 @@
     name: 'App',
     data(){
       return {
-        name:'hjai111'
+        name: 'hjai111'
       }
     },
     components: {
       HelloWorld
     },
-    methods:{
-      onClick_nameBtn()
-      {
-        consol.log(this.name);
-      }
+    methods: {
     }
   }
 </script>
-
-<style>
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  }
-</style>
 <style lang="scss" rel="stylesheet/scss" type="text/scss">
-.test{
-  background-color: #42b983;
-  .hello{
-    width: auto;
+  #app {
+    height: 100%;
+    width: 100%;
+    margin: 0;
   }
-}
+  body{
+    margin: 0;
+  }
 </style>

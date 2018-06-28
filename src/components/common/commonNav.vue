@@ -1,11 +1,11 @@
 <template>
-  <div style="background-color:green">
-    <p>我是导航栏</p>
+  <div class="nav-contain">
+    <el-button @click="personInfo">账户信息</el-button>
     <el-button @click="loginOut">登出</el-button>
   </div>
 </template>
 <script type="text/ecmascript-6">
-  import API from '../../../api/api_login';
+  import API from '../../api/api_login';
   export default{
     created(){
     },
@@ -32,9 +32,18 @@
             path: '/login'
           });
         })
+      },
+      personInfo()
+      {
+
       }
     }
   }
 
 </script>
-
+<style lang="scss" rel="stylesheet/scss" type="text/scss">
+.nav-contain {
+background-color: cornflowerblue;
+  height: 50px;
+}
+</style>
