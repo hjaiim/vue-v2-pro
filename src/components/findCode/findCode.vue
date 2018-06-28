@@ -1,8 +1,12 @@
 <template>
-	<div>
-	</div>
+	<main-layout>
+    <div>
+      <el-button @click="handleOpenWindow">另开窗口</el-button>
+    </div>
+  </main-layout>
 </template>
 <script type="text/ecmascript-6">
+  import MainLayout from '@/components/common/mainLayout'
 	export default{
 		created(){
 
@@ -11,9 +15,16 @@
 			return {
 			}
 		},
-		components: {},
+		components: {
+		  MainLayout
+    },
 		watch: {},
-		methods: {}
+		methods: {
+      handleOpenWindow()
+      {
+        window.open(`static/html/test.html`);
+      }
+    }
 	}
 
 </script>
