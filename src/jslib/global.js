@@ -4,9 +4,11 @@
 import * as models from './model/models';
 import utils from './kit/utils';
 import fun from './kit/fun';
+import * as event from './kit/GEvent';
 
 export {
   models,
   utils,
-  fun
+  fun,
+  event
 };
