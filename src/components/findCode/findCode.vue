@@ -6,16 +6,14 @@
   </main-layout>
 </template>
 <script type="text/ecmascript-6">
-  import MainLayout from '@/components/common/mainLayout';
-  import QrCode from '@/components/common/qrcode';
-  import * as g from '@/jslib/global';
+  import MainLayout from 'common/mainLayout';
+  import QrCode from 'common/qrcode';
+  import * as g from 'jslib/global';
   export default{
     created(){
-
     },
     data(){
       return {
-        size:{width:200,height:200}
       }
     },
     components: {

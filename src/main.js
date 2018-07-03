@@ -11,7 +11,7 @@ Vue.use(hjaiUI);
 /**
  * 挂全局方法
  */
-import * as g from './jslib/global';
+import * as g from './assets/jslib/global';
 Vue.prototype.GLOBAL = g;
 setWindowAttribute('g', g);
 
@@ -41,7 +41,7 @@ function setWindowAttribute($attr, $value)
 {
   if (typeof $attr !== 'string' || typeof $value !== 'object')
   {
-    throw new Error('The type of the parameter is not expected');
+    throw new Error('参数类型不对!');
   }
 
   if (process.env.NODE_ENV === 'development')

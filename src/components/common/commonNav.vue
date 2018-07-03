@@ -5,7 +5,7 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-  import API from '../../api/api_login';
+  import API from 'api/api_login';
   export default{
     created(){
     },

@@ -3,9 +3,9 @@
  */
 import axios from 'axios';
 import qs from 'qs';
-import *as g from '../jslib/global';
+import *as g from 'jslib/global';
 import router from '../router';
-import web_config from '../jslib/config/config';
+import web_config from 'jslib/config/config';
 import {Loading} from 'element-ui';
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
@@ -34,10 +34,9 @@ axios.interceptors.request.use(config=>
 });
 
 // 添加一个响应拦截器
-axios.interceptors.response.use(function (response)
+axios.interceptors.response.use(response=>
 {
   closeLoading();
-
   if (response.data && response.data.code)
   {
     if (parseInt(response.data.code) === web_config.unLoginCode)
@@ -54,17 +53,18 @@ axios.interceptors.response.use(function (response)
       })
     }
 
-    if (parseInt(response.data.code) !== web_config.successCode)
-    {//接口异常
-      return Promise.reject(response.data)
-    }
+    //好像没用,待定
+//    if (parseInt(response.data.code) !== web_config.successCode)
+//    {//接口异常
+//      return Promise.reject(response.data)
+//    }
   }
   return response;
-}, function (error)
+}, error=>
 {
-  closeLoading();
   // Do something with response error
-  if (error && error.response)
+  closeLoading();
+  if (error.response)
   {
     switch (error.response.status)
     {
@@ -111,9 +111,13 @@ axios.interceptors.response.use(function (response)
       case 505:
         error.message = 'HTTP版本不受支持'
         break
-
       default:
+        error.message = `连接出错(${error.response.status})!`;
     }
+  }
+  else
+  {
+    error.message = '网络异常,连接服务器失败!'
   }
   return Promise.reject(error);
 });
@@ -122,13 +126,19 @@ axios.interceptors.response.use(function (response)
 
 export const POST = (url, params) =>
 {
-  return axios.post(url, params).then(res => res.data)
+  return axios.post(url, params).then(res => res.data).then(res => res.data)
 }
 
 export const GET = (url, params) =>
 {
   return axios.get(url, {params: params}).then(res => res.data)
 }
+
+export const ALL = (promiseArr)=>
+{
+  return axios.all(promiseArr)
+}
+
 
 function closeLoading()
 {

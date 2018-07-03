@@ -1,6 +1,7 @@
 <template>
 	<main-layout>
       <div>我的二维码
+        <img src="@/assets/logo.png" alt="">
       </div>
       <div>购买二维码
         <img src="static/img/logo.png" alt="">
@@ -14,7 +15,7 @@
 	</main-layout>
 </template>
 <script type="text/ecmascript-6">
-  import MainLayout from '@/components/common/mainLayout';
+  import MainLayout from 'common/mainLayout';
 	export default{
 		created(){
 

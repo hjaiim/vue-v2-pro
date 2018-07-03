@@ -14,8 +14,8 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-  import CommonNav from '@/components/common/commonNav';
-  import CommonMenu from '@/components/common/commonMenu';
+  import CommonNav from 'common/commonNav';
+  import CommonMenu from 'common/commonMenu';
   export default{
     created(){
 

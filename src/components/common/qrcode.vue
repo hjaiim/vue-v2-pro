@@ -4,7 +4,7 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-  import *as g from '@/jslib/global';
+  import *as g from 'jslib/global';
   export default{
     created(){
       g.event.removeAllListener("INIT_QRCODE");

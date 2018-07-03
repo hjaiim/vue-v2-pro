@@ -10,6 +10,7 @@ import Index from '../components/index/index.vue';
 import Login from '../components/login/login.vue';
 import QrCode from '../components/qrCode/qrCode.vue';
 import FindCode from '../components/findCode/findCode.vue';
+import Activity from '../components/activity/activity.vue';
 
 let router = new VueRouter({
   mode: 'history',
@@ -37,6 +38,12 @@ let router = new VueRouter({
       name: "查找二维码",
       component: FindCode,
       meta: {requireLogin: true}
+    },
+    {
+      path: '/activity',
+      name: "活动管理",
+      component: Activity,
+      meta: {requireLogin: true}
     }
   ]
 })
@@ -44,7 +51,6 @@ let router = new VueRouter({
 router.beforeEach((to, from, next) =>
 {
   console.log('导航守卫--执行')
-  console.log(to.fullPath.replace('/',''))
   if (to.meta.requireLogin)
   {
     if (g.utils.getSessionData('isLogin'))

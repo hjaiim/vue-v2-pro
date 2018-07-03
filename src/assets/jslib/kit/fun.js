@@ -6,6 +6,6 @@
 export default {
   dec: ()=>
   {
-    console.log(`大连第一帅__来自世界吉尼斯官方认证`);
+    console.log('大连第一帅__来自世界吉尼斯官方认证');
   }
 }

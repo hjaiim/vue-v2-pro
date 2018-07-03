@@ -5,14 +5,15 @@
 let _list = [];
 let _hash = Object.create(null);
 let _total = 1;
-export default class IndexModel {
+class IndexModel {
   constructor()
   {
-
   }
 
-  update($obj)
+  update($obj, isRemove = true)
   {
+    this.remove(isRemove);
+
     if ($obj['resultPageList'] && $obj['resultPageList']['data'])
     {
       for (let item of $obj['resultPageList']['data'])
@@ -24,7 +25,6 @@ export default class IndexModel {
     {
       _total = $obj['resultPageList']['total'];
     }
-
   }
 
   add($item)
@@ -37,6 +37,17 @@ export default class IndexModel {
     }
   }
 
+  remove(isRemove)
+  {
+    if (!isRemove)
+    {
+      return
+    }
+    _list = [];
+    _total = 1;
+    _hash = Object.create(null);
+  }
+
   get list()
   {
     return _list
@@ -47,12 +58,9 @@ export default class IndexModel {
     return _total
   }
 
-  reset()
-  {
-    _list = [];
-    _total = 1;
-  }
 }
+
+export default new IndexModel();
 
 function createData($obj)
 {
@@ -73,4 +81,5 @@ function updateData($obj)
   $obj.hasOwnProperty('msgContent') && (this.content = $obj['msgContent']);
   $obj.hasOwnProperty('sendTime') && (this.time = $obj['sendTime']);
 }
+
 

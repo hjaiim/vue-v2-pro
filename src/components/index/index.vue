@@ -14,17 +14,16 @@
   </main-layout>
 </template>
 <script type="text/ecmascript-6">
-  import MainLayout from '@/components/common/mainLayout';
-  import API from '../../api/api_index';
+  import MainLayout from 'common/mainLayout';
+  import API from 'api/api_index';
   import IndexModel from './model/IndexModel';
   export default{
     created(){
-      this.messageData();
+      this.preload();
     },
     data(){
       return {
         text: '',
-        model: new IndexModel(),
         tableData: [],
         currentPage: 1,
         total: 1
@@ -35,27 +34,31 @@
     },
     watch: {},
     methods: {
-      messageData()
+      preload(){
+        this.messageData(1);
+      },
+      messageData(page)
       {
         let messageParams = {
-          page: 1,
+          page: page,
           pageSize: 10,
           sortField: 'send_time',
           sortOrder: 'desc'
         }
         API.message(messageParams).then((result)=>
         {
-          this.model.update(result.data);
+          IndexModel.update(result);
           this.initData();
         }).catch((error)=>
         {
           console.log(error.message);
+          console.log(error);
         })
       },
       initData()
       {
-        this.tableData = this.model.list;
-        this.total = this.model.total;
+        this.tableData = IndexModel.list;
+        this.total = IndexModel.total;
       },
       handleSizeChange(val)
       {
@@ -64,6 +67,7 @@
       handleCurrentChange(val)
       {
         console.log(`当前页:${val}`);
+        this.messageData(val);
       }
     }
   }

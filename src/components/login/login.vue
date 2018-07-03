@@ -8,11 +8,10 @@
 </template>
 <script type="text/ecmascript-6">
   import sha256 from 'sha256';
-  import API from '../../api/api_login';
-  import * as g from '@/jslib/global';
+  import API from 'api/api_login';
+  import * as g from 'jslib/global';
   export default{
     created(){
-      console.log(this.$router.push({}))
       console.log(this.$route.query.redirect)
     },
     data(){

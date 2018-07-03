@@ -31,13 +31,13 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-//      '/api': {
-//        changeOrigin: true,
-//        target: 'http://test.service.xq.mms.yundingdang.com',
-//        pathRewrite: {
-//          '^/api': ''
-//        }
-//      }
+      '/api': {
+        changeOrigin: true,
+        target: 'http://test.service.xq.mms.yundingdang.com',
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
     },
 
     // Various Dev Server settings

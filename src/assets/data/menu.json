@@ -15,5 +15,17 @@
         "highLightList": ["/qrcode"]
       }
     ]
+  },
+  {
+    "id": "activity",
+    "name": "活动管理",
+    "icon": "bag",
+    "nav": [
+      {
+        "name": "我的活动",
+        "path": "/activity",
+        "highLightList": ["/activity"]
+      }
+    ]
   }
 ]
