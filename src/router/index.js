@@ -3,7 +3,7 @@
  */
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import * as g from '@/jslib/global';
+import * as g from 'jslib/global';
 Vue.use(VueRouter)
 
 import Index from '../components/index/index.vue';
