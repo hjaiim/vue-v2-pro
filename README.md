@@ -63,6 +63,6 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 >4.qs                                 # 解析URL参数
 
 ### 本地
->1.node-sass                          # sass
+>1.node-sass                          # sass  
 >2.sass-loader
 
