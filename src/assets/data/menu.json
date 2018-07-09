@@ -25,6 +25,11 @@
         "name": "我的活动",
         "path": "/activity",
         "highLightList": ["/activity"]
+      },
+      {
+        "name": "vuex",
+        "path": "/vuex",
+        "highLightList": ["/vuex"]
       }
     ]
   }

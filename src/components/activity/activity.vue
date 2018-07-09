@@ -1,47 +1,37 @@
 <template>
   <main-layout>
-
+    <button @click="changeInfo">改变数据</button>
+    <button @click="changeTest">改变test数据</button>
+    <table-list :tableInfo="tableInfo" :testInfo="testInfo"></table-list>
   </main-layout>
 </template>
 <script type="text/ecmascript-6">
   import MainLayout from 'common/mainLayout';
   import API from 'api/api_activity';
+  import TableList from './component/tableList.vue';
   export default{
     created(){
       this.preload();
     },
     data(){
-      return {}
+      return {
+        tableInfo: {
+          name: '数据列表',
+          width: '100',
+          height: '200'
+        },
+        testInfo: {
+          test: '啊啊啊'
+        }
+      }
     },
     components: {
-      MainLayout
+      MainLayout,
+      TableList
     },
     watch: {},
     methods: {
       preload(){
-        this.activityData();
-        this.test();
-      },
-      activityData(){
-        let params = {
-          activityStatus: 0,
-          page: 1,
-          pageSize: 10
-        }
-        API.data(params).then((result)=>
-        {
-//          console.log(result);
-        }).catch((err)=>
-        {
-          console.log(err);
-        })
-      },
-      initData()
-      {
-
-      },
-      test()
-      {
         let params = {
           activityStatus: 0,
           page: 1,
@@ -52,6 +42,15 @@
         {
           console.log(result)
         })
+      },
+      changeInfo()
+      {
+        this.tableInfo.name = '表格列表';
+      },
+      changeTest()
+      {
+        this.testInfo.test = '哈哈哈';
+//        this.testInfo = {test:'kakk'}
       }
     }
   }

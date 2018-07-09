@@ -53,11 +53,10 @@ axios.interceptors.response.use(response=>
       })
     }
 
-    //好像没用,待定
-//    if (parseInt(response.data.code) !== web_config.successCode)
-//    {//接口异常
-//      return Promise.reject(response.data)
-//    }
+    if (parseInt(response.data.code) !== web_config.successCode)
+    {//参数格式不对,接口正常,code不对.
+      return Promise.reject(response.data)
+    }
   }
   return response;
 }, error=>
@@ -123,7 +122,6 @@ axios.interceptors.response.use(response=>
 });
 
 //通用方法
-
 export const POST = (url, params) =>
 {
   return axios.post(url, params).then(res => res.data).then(res => res.data)

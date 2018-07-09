@@ -6,20 +6,19 @@
 </template>
 <script type="text/ecmascript-6">
   import API from 'api/api_login';
+  import * as g from 'jslib/global';
   export default{
     created(){
     },
     data(){
-      return {
-      }
+      return {}
     },
     components: {},
     watch: {},
     methods: {
       loginOut()
       {
-        //更新sessionStorage登录状态(登出)
-        g.utils.setSessionData('isLogin', false);
+        this.updateLogin()
 
         API.logout().then(()=>
         {
@@ -36,14 +35,19 @@
       personInfo()
       {
 
+      },
+      updateLogin()
+      {
+        //更新sessionStorage登录状态(登出)
+        g.utils.setSessionData('isLogin', false);
       }
     }
   }
 
 </script>
 <style lang="scss" rel="stylesheet/scss" type="text/scss">
-.nav-contain {
-background-color: cornflowerblue;
-  height: 50px;
-}
+  .nav-contain {
+    background-color: cornflowerblue;
+    height: 50px;
+  }
 </style>

@@ -8,7 +8,6 @@
 <script type="text/ecmascript-6">
   import MainLayout from 'common/mainLayout';
   import QrCode from 'common/qrcode';
-  import * as g from 'jslib/global';
   export default{
     created(){
     },
@@ -24,10 +23,10 @@
     methods: {
       handleOpenWindow()
       {
-        window.open(`static/html/test.html`);
+        window.open('static/html/test.html');
       },
       creatQrCode(){
-        g.event.dispatchEvent('INIT_QRCODE', 'http://www.baidu.com');
+        this.$g.event.dispatchEvent('INIT_QRCODE', 'http://www.baidu.com');
       }
     }
   }

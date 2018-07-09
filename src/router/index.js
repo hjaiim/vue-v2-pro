@@ -11,6 +11,7 @@ import Login from '../components/login/login.vue';
 import QrCode from '../components/qrCode/qrCode.vue';
 import FindCode from '../components/findCode/findCode.vue';
 import Activity from '../components/activity/activity.vue';
+import Vuex from '../components/vuexTest/vuexTest.vue';
 
 let router = new VueRouter({
   mode: 'history',
@@ -44,6 +45,12 @@ let router = new VueRouter({
       name: "活动管理",
       component: Activity,
       meta: {requireLogin: true}
+    },
+    {
+      path: '/vuex',
+      name: "vuex",
+      component: Vuex,
+      meta: {requireLogin: false}
     }
   ]
 })
@@ -61,7 +68,7 @@ router.beforeEach((to, from, next) =>
     {//未登录,跳登录页,再回调当前页
       next({
         path: '/login',
-        query: {redirect: to.fullPath.replace('/','')}
+        query: getQuery(to.fullPath)
       })
     }
   }
@@ -86,3 +93,18 @@ router.beforeEach((to, from, next) =>
 })
 
 export default router
+
+/**
+ * 1.去掉路由带的'/'
+ * 2.如果是默认页面,则不需要'redirect'
+ * @param path
+ */
+function getQuery(path)
+{
+  let queryObj = {};
+  if (path != '/')
+  {
+    queryObj['redirect'] = path.replace('/', '');
+  }
+  return queryObj;
+}
