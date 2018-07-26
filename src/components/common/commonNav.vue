@@ -6,7 +6,6 @@
 </template>
 <script type="text/ecmascript-6">
   import API from 'api/api_login';
-  import * as g from 'jslib/global';
   export default{
     created(){
     },
@@ -39,7 +38,7 @@
       updateLogin()
       {
         //更新sessionStorage登录状态(登出)
-        g.utils.setSessionData('isLogin', false);
+        this.$utils.data.setData('isLogin', false,'ses');
       }
     }
   }
