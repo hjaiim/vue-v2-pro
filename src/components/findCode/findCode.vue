@@ -26,7 +26,7 @@
         window.open('static/html/test.html');
       },
       creatQrCode(){
-        this.$g.event.dispatchEvent('INIT_QRCODE', 'http://www.baidu.com');
+        this.$utils.event.dispatchEvent('INIT_QRCODE', 'http://www.baidu.com');
       }
     }
   }

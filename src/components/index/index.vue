@@ -47,6 +47,7 @@
         }
         API.message(messageParams).then((result)=>
         {
+
           IndexModel.update(result);
           this.initData();
         }).catch((error)=>
