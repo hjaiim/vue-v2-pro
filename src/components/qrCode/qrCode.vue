@@ -12,10 +12,12 @@
     </div>
     <div>
     </div>
+    <test @click.native="test"></test>
   </main-layout>
 </template>
 <script type="text/ecmascript-6">
   import MainLayout from 'common/mainLayout';
+  import Test from './test.vue';
   export default{
     created(){
     },
@@ -23,10 +25,15 @@
       return {}
     },
     components: {
-      MainLayout
+      MainLayout,
+      Test
     },
     watch: {},
-    methods: {}
+    methods: {
+      test(){
+        this.$message('hhh')
+      }
+    }
   }
 
 </script>

@@ -8,8 +8,7 @@ var os = require('os');
 var localIp;
 var interfaces = os.networkInterfaces();
 
-(()=>
-{
+(()=> {
   for (var netName in interfaces)
   {
     var netList = interfaces[netName];

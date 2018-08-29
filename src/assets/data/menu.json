@@ -32,5 +32,17 @@
         "highLightList": ["/vuex"]
       }
     ]
+  },
+  {
+    "id": "layout",
+    "name": "框架",
+    "icon": "layout",
+    "nav": [
+      {
+        "name": "框架",
+        "path": "/layout",
+        "highLightList": ["/layout"]
+      }
+    ]
   }
 ]

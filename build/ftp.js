@@ -35,14 +35,32 @@ function readDirSync(p)
   });
 }
 
-readDirSync(root);
+//readDirSync(root);
 
 c.on('ready', function() {
-  console.log(`文件总数量:${files.length}`);
-  c.put('/Users/HaoJun/Desktop/webstorm/vue/vue-v2-pro/dist/index.html','hjai/index.html', function (err) {
-    if (err) throw err;
+//  console.log(`文件总数量:${files.length}`);
+
+//  c.list(function(err, list) {
+//    if (err) throw err;
+//    console.dir(list);
+//    c.end();
+//  });
+
+  c.get('nba',function (err)
+  {
+    console.log(err);
     c.end();
-  });
+//    c.mkdir('nba',false,function (err)
+//    {
+//      if (err) throw err;
+//      c.end();
+//    })
+  })
+
+//  c.put('./dist/index.html','hjai/test/index2.html', function (err) {
+//    if (err) throw err;
+//    c.end();
+//  });
 
 //  files.forEach(function (filename) {
 //    console.log(filename.replace(root,''))

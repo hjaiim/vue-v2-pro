@@ -1,16 +1,15 @@
 <template>
 	<div>
+    我是测试组件
 	</div>
 </template>
 <script type="text/ecmascript-6">
-	import g from "../../global";
 	export default{
 		created(){
 
 		},
 		data(){
 			return {
-				g: g
 			}
 		},
 		components: {},
@@ -19,6 +18,6 @@
 	}
 
 </script>
-<style type="text/css" lang="sass" rel="stylesheet/css" scoped>
+<style type="text/css" lang="scss" rel="stylesheet/css" scoped>
 
 </style>
