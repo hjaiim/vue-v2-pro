@@ -14,82 +14,95 @@ import FindCode from '../components/findCode/findCode.vue';
 import Activity from '../components/activity/activity.vue';
 import Vuex from '../components/vuexTest/vuexTest.vue';
 
+import Layout from '../components/layout/layout.vue';
+
+// 懒加载
+//const TEST = resolve => require(['../components/index/index.vue'],resolve);
+
 let router = new VueRouter({
   mode: 'history',
-  routes: [
-    {
+  routes: [{
       path: '/',
       name: "首页",
       component: Index,
-      meta: {requireLogin: true}
+      meta: {
+        requireLogin: true
+      },
+      leaf: false,
+      iconCls: 'iconfont icon-home', // 图标样式class
     },
     {
       path: '/login',
       name: "登录页",
       component: Login,
-      meta: {requireLogin: false}
+      meta: {
+        requireLogin: false
+      }
     },
     {
       path: '/qrcode',
       name: "我的二维码",
       component: QrCode,
-      meta: {requireLogin: true}
+      meta: {
+        requireLogin: true
+      }
     },
     {
       path: '/findcode',
       name: "查找二维码",
       component: FindCode,
-      meta: {requireLogin: true}
+      meta: {
+        requireLogin: true
+      }
     },
     {
       path: '/activity',
       name: "活动管理",
       component: Activity,
-      meta: {requireLogin: true}
+      meta: {
+        requireLogin: true
+      }
     },
     {
       path: '/vuex',
       name: "vuex",
       component: Vuex,
-      meta: {requireLogin: false}
+      meta: {
+        requireLogin: false
+      }
+    },
+    {
+      path: '/layout',
+      name: "layout",
+      component: Layout,
+      meta: {
+        requireLogin: true
+      }
     }
   ]
 })
 
 // 全局钩子函数,在跳转之前执行
-router.beforeEach((to, from, next) =>
-{
+router.beforeEach((to, from, next) => {
   console.log('导航守卫--执行')
 
-  if (to.meta.requireLogin)
-  {
-    if (utils.data.getData('isLogin', 'ses'))
-    { // 登录状态
+  if (to.meta.requireLogin) {
+    if (utils.data.getData('isLogin')) { // 登录状态
       next();
-    }
-    else
-    { // 未登录,跳登录页,再回调当前页
+    } else { // 未登录,跳登录页,再回调当前页
       next({
         path: '/login',
         query: getQuery(to.fullPath)
       })
     }
-  }
-  else
-  {
-    if (to.path === '/login')
-    {
-      if (utils.data.getData('isLogin', 'ses'))
-      { // 防止手动输入login,默认跳首页
+  } else {
+    if (to.path === '/login') {
+      if (utils.data.getData('isLogin')) { // 防止手动输入login,默认跳首页
         next('/');
-      }
-      else
-      {
+      } else {
         next();
       }
-    }
-    else
-    {
+    } else {
       next();
     }
   }
@@ -102,11 +115,9 @@ export default router
  * 2.如果是默认页面,则不需要'redirect'
  * @param path
  */
-function getQuery(path)
-{
+function getQuery(path) {
   let queryObj = {};
-  if (path != '/')
-  {
+  if (path != '/') {
     queryObj['redirect'] = path.replace('/', '');
   }
   return queryObj;
