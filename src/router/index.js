@@ -15,6 +15,7 @@ import Activity from '../components/activity/activity.vue';
 import Vuex from '../components/vuexTest/vuexTest.vue';
 
 import Layout from '../components/layout/layout.vue';
+import Test from '@/vueApiTest/vueApiTest';
 
 // 懒加载
 //const TEST = resolve => require(['../components/index/index.vue'],resolve);
@@ -77,6 +78,14 @@ let router = new VueRouter({
       component: Layout,
       meta: {
         requireLogin: true
+      }
+    },
+    {
+      path: '/test',
+      name: "test",
+      component: Test,
+      meta: {
+        requireLogin: false
       }
     }
   ]

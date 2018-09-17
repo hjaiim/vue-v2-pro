@@ -3,7 +3,7 @@
     <p>登录页</p>
     <el-input v-model="account" placeholder="请输入账号"></el-input>
     <el-input v-model="password" placeholder="请输入密码"></el-input>
-    <el-button @click="handleLogin">登录</el-button>
+    <el-button @click="handleLogin" v-loading.fullscreen.lock='fullscreenLoading'>登录</el-button>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -16,13 +16,15 @@ export default {
   data() {
     return {
       account: "红包",
-      password: "123456liu"
+      password: "123456liu",
+      fullscreenLoading: false
     };
   },
   components: {},
   watch: {},
   methods: {
     handleLogin() {
+      this.fullscreenLoading = true;
       let loginParams = {
         logon: this.account,
         password: sha256(this.password)
