@@ -1,9 +1,9 @@
 <template>
-    <div class="wrapper">
-        <div>api-filters</div>
-        <div>{{moneyNum | moneyFilter}}</div>
-        <div>{{age | ageFilter('男','而立之年')}}</div>
-    </div>
+  <div class="wrapper">
+    <div class="test-title">api-filters</div>
+    <div>{{moneyNum | moneyFilter}}</div>
+    <div>{{age | ageFilter('男','而立之年')}}</div>
+  </div>
 </template>
 
 <script>
@@ -33,4 +33,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.test-title {
+  color: red;
+}
 </style>
