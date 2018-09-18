@@ -21,7 +21,7 @@ import Test from '@/vueApiTest/vueApiTest';
 //const TEST = resolve => require(['../components/index/index.vue'],resolve);
 
 let router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   routes: [{
       path: '/',
       name: "首页",
@@ -45,7 +45,7 @@ let router = new VueRouter({
       name: "我的二维码",
       component: QrCode,
       meta: {
-        requireLogin: true
+        requireLogin: false
       }
     },
     {

@@ -16,49 +16,41 @@
   </main-layout>
 </template>
 <script type="text/ecmascript-6">
-  import mainLayout from 'common/mainLayout';
-  import {mapGetters} from 'vuex';
-  export default{
-    created(){
+import mainLayout from "common/mainLayout";
+import { mapGetters } from "vuex";
+export default {
+  created() {},
+  data() {
+    return {};
+  },
+  components: {
+    mainLayout
+  },
+  computed: {
+    addTwo() {
+      return this.$store.getters.countAdd;
     },
-    data(){
-      return {}
+    ...mapGetters(["countDel"])
+  },
+  watch: {},
+  methods: {
+    addAge() {
+      this.$store.commit("test");
     },
-    components: {
-      mainLayout
+    action1() {
+      this.$store.dispatch("addAction", 3);
     },
-    computed: {
-      addTwo(){
-        return this.$store.getters.countAdd
-      },
-      ...mapGetters([
-        'countDel'
-      ])
+    action2() {
+      this.$store.dispatch("testAction");
     },
-    watch: {},
-    methods: {
-      addAge(){
-        this.$store.commit('test');
-      },
-      action1()
-      {
-        this.$store.dispatch('addAction', 3);
-      },
-      action2()
-      {
-        this.$store.dispatch('testAction');
-      },
-      action3()
-      {
-        this.$store.dispatch('time');
-      },
-      mutations4()
-      {
-        this.$store.commit('test1');
-      }
+    action3() {
+      this.$store.dispatch("time");
+    },
+    mutations4() {
+      this.$store.commit("test1");
     }
   }
-
+};
 </script>
 <style type="text/css" lang="sass" rel="stylesheet/css" scoped>
 

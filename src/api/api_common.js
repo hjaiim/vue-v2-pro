@@ -8,5 +8,4 @@ const STATIC_URL = process.env.NODE_ENV === 'development' ? window.location.orig
 export default {
   // json
   menu: () => API.GET(`${STATIC_URL}/static/data/menu.json`)
-
 }

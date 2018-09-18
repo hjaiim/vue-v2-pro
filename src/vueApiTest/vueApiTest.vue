@@ -1,8 +1,8 @@
 <template>
-	<main-layout>
-		<filter-test></filter-test>
-		<Mixin-test></Mixin-test>
-	</main-layout>
+  <main-layout>
+    <filter-test></filter-test>
+    <Mixin-test></Mixin-test>
+  </main-layout>
 </template>
 <script type="text/ecmascript-6">
 import MainLayout from "common/mainLayout";
@@ -25,6 +25,6 @@ export default {
   }
 };
 </script>
-<style type="text/css" lang="sass" rel="stylesheet/css" scoped>
-
+<style type="text/css" lang="sass" rel="stylesheet/css">
+@import '~css/test.scss';
 </style>
