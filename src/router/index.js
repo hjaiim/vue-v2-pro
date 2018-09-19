@@ -49,6 +49,11 @@ let router = new VueRouter({
     {
       path: '/qrcode',
       name: "我的二维码",
+      beforeEnter: (to, from, next) => {
+        // do someting
+        console.log('路由独享钩子----beforEnter');
+        next();
+      },
       // component: QrcodeTest,
       component: () =>
         import ('../components/qrCode/qrCode.vue'),
@@ -101,8 +106,7 @@ let router = new VueRouter({
 
 // 全局钩子函数,在跳转之前执行
 router.beforeEach((to, from, next) => {
-  console.log('导航守卫--执行')
-
+  console.log('全局前置守卫(钩子)----beforeEach');
   if (to.meta.requireLogin) {
     if (utils.data.getData('isLogin')) { // 登录状态
       next();
@@ -124,6 +128,11 @@ router.beforeEach((to, from, next) => {
     }
   }
 })
+
+router.afterEach((to, from) => {
+  // do someting
+  console.log('全局后置钩子----afterEach');
+});
 
 export default router
 

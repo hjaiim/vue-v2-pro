@@ -21,9 +21,29 @@
 import MainLayout from "common/mainLayout";
 import Test from "./test.vue";
 export default {
+  beforeRouteEnter(to, from, next) {
+    // do someting
+    // 在渲染该组件的对应路由被 confirm 前调用
+    console.log("组件钩子----beforeRouteEnter");
+    next();
+  },
+  beforeRouteUpdate(to, from, next) {
+    // do someting
+    // 在当前路由改变，但是依然渲染该组件是调用
+    console.log("组件钩子----beforeRouteUpdate");
+    next();
+  },
+  beforeRouteLeave(to, from, next) {
+    // do someting
+    // 导航离开该组件的对应路由时被调用
+    console.log("组件钩子----beforeRouteLeave");
+    next();
+  },
   created() {
-    
-    
+    console.log("生命周期----created");
+  },
+  mounted() {
+    console.log("生命周期----mounted");
   },
   data() {
     return {};
