@@ -9,18 +9,25 @@ Vue.use(VueRouter)
 
 import Index from '../components/index/index.vue';
 import Login from '../components/login/login.vue';
-import QrCode from '../components/qrCode/qrCode.vue';
+// import QrCode from '../components/qrCode/qrCode.vue';
 import FindCode from '../components/findCode/findCode.vue';
 import Activity from '../components/activity/activity.vue';
 import Vuex from '../components/vuexTest/vuexTest.vue';
 
 import Layout from '../components/layout/layout.vue';
+import Test from '@/vueApiTest/vueApiTest';
 
 // 懒加载
-//const TEST = resolve => require(['../components/index/index.vue'],resolve);
+/**
+ *  更快的加载首页.
+ * 方式1.component: resolve => require(['@/components/qrCode/qrCode.vue'], resolve)
+ * 方式2:component: () =>import ('../components/qrCode/qrCode.vue')
+ * 先import 组件 会导致懒加载的引入不生效
+ */
+// const QrcodeTest = resolve => require(['@/components/qrCode/qrCode.vue'], resolve);
 
 let router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   routes: [{
       path: '/',
       name: "首页",
@@ -42,9 +49,16 @@ let router = new VueRouter({
     {
       path: '/qrcode',
       name: "我的二维码",
-      component: QrCode,
+      beforeEnter: (to, from, next) => {
+        // do someting
+        console.log('路由独享钩子----beforEnter');
+        next();
+      },
+      // component: QrcodeTest,
+      component: () =>
+        import ('../components/qrCode/qrCode.vue'),
       meta: {
-        requireLogin: true
+        requireLogin: false
       }
     },
     {
@@ -78,14 +92,21 @@ let router = new VueRouter({
       meta: {
         requireLogin: true
       }
+    },
+    {
+      path: '/test',
+      name: "test",
+      component: Test,
+      meta: {
+        requireLogin: false
+      }
     }
   ]
 })
 
 // 全局钩子函数,在跳转之前执行
 router.beforeEach((to, from, next) => {
-  console.log('导航守卫--执行')
-
+  console.log('全局前置守卫(钩子)----beforeEach');
   if (to.meta.requireLogin) {
     if (utils.data.getData('isLogin')) { // 登录状态
       next();
@@ -107,6 +128,11 @@ router.beforeEach((to, from, next) => {
     }
   }
 })
+
+router.afterEach((to, from) => {
+  // do someting
+  console.log('全局后置钩子----afterEach');
+});
 
 export default router
 

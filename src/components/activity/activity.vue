@@ -11,7 +11,7 @@
   import TableList from './component/tableList.vue';
   export default{
     created(){
-      this.preload();
+      
     },
     data(){
       return {

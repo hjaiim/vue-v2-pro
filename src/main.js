@@ -24,6 +24,10 @@ Vue.use(ElementUI);
 // 公共css
 import 'css/iconfont.css';
 
+import mixin from "./vueApiTest/testApi/mixin";
+Vue.mixin(mixin);
+
+
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
