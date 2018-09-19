@@ -9,7 +9,7 @@ Vue.use(VueRouter)
 
 import Index from '../components/index/index.vue';
 import Login from '../components/login/login.vue';
-import QrCode from '../components/qrCode/qrCode.vue';
+// import QrCode from '../components/qrCode/qrCode.vue';
 import FindCode from '../components/findCode/findCode.vue';
 import Activity from '../components/activity/activity.vue';
 import Vuex from '../components/vuexTest/vuexTest.vue';
@@ -18,7 +18,13 @@ import Layout from '../components/layout/layout.vue';
 import Test from '@/vueApiTest/vueApiTest';
 
 // 懒加载
-//const TEST = resolve => require(['../components/index/index.vue'],resolve);
+/**
+ *  更快的加载首页.
+ * 方式1.component: resolve => require(['@/components/qrCode/qrCode.vue'], resolve)
+ * 方式2:component: () =>import ('../components/qrCode/qrCode.vue')
+ * 先import 组件 会导致懒加载的引入不生效
+ */
+// const QrcodeTest = resolve => require(['@/components/qrCode/qrCode.vue'], resolve);
 
 let router = new VueRouter({
   // mode: 'history',
@@ -43,7 +49,9 @@ let router = new VueRouter({
     {
       path: '/qrcode',
       name: "我的二维码",
-      component: QrCode,
+      // component: QrcodeTest,
+      component: () =>
+        import ('../components/qrCode/qrCode.vue'),
       meta: {
         requireLogin: false
       }
