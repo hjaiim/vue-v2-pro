@@ -45,6 +45,12 @@ export default {
   mounted() {
     console.log("生命周期----mounted");
   },
+  updated() {
+    console.log("生命周期----updated");
+  },
+  destroyed() {
+    console.log("生命周期----destroyed");
+  },
   data() {
     return {};
   },
