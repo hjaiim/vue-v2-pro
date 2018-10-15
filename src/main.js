@@ -42,16 +42,12 @@ new Vue({
  * @param $attr 属性名
  * @param $value 属性值
  */
-function setWindowAttribute($attr, $value)
-{
-  if (typeof $attr !== 'string' || typeof $value !== 'object')
-  {
+function setWindowAttribute($attr, $value) {
+  if (typeof $attr !== 'string' || typeof $value !== 'object') {
     throw new Error('参数类型不对!');
   }
 
-  if (process.env.NODE_ENV === 'development')
-  {
+  if (process.env.NODE_ENV === 'development') {
     window[$attr] = $value;
   }
 }
-
