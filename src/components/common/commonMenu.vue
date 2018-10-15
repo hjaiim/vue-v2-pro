@@ -14,7 +14,7 @@
 </template>
 <script type="text/ecmascript-6">
   import MenuData from '@/assets/data/menu.json';
-  import API from 'api/api_common';
+  import API from 'api/api_staticJson';
   export default{
     created(){
       API.menu().then((result)=>
