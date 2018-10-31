@@ -1,17 +1,16 @@
 <template>
   <div class="wrapper">
-    <div class="test-title">直接获得焦点9</div>
-    <!-- <input type="text" autofocus="autofocus" ref="inputTest"> -->
-    <input type="text" ref="inputTest" id="input">
-    <!-- <input type="text" v-focus> -->
-    <!-- <input type="text" v-focus> -->
+    <div class="test-title">直接获得焦点(先点击后者input,弹起键盘,再把focus转移到前者的input)</div>
+    <input type="tel" ref="inputTest" id="input">
+    <input id="qs_bitch" type="tel" @click="test">
 
-    </div>
+    <keyboard ref="keyboardCon" :style="{bottom:keyboardTop}" @click="onClick_key">
+
+    </keyboard>
+  </div>
 </template>
 
 <script type="text/ecmascript-6">
-
-
 export default {
   beforeRouteEnter(to, from, next) {
     // do someting
@@ -44,7 +43,9 @@ export default {
     console.log("生命周期----destroyed");
   },
   data() {
-    return {};
+    return {
+      keyboardTop: "-100%"
+    };
   },
   components: {},
   props: {},
@@ -55,7 +56,28 @@ export default {
     }
   },
   computed: {},
-  methods: {}
+  methods: {
+    onClick_key($str) {
+      $str = $str + "";
+      if (!isNaN($str - 0)) {
+        this.money = g.func.addNum(this.money, $str - 0);
+      } else if ($str == "del") {
+        var tempMoney = this.money;
+        this.money = g.func.delNum(this.money);
+        if (tempMoney != this.money && this.money == "") {
+          this.isShowInsert = false;
+          setTimeout(() => {
+            this.isShowInsert = true;
+          }, 500);
+        }
+      } else if ($str == "dot") {
+        this.money = g.func.addDot(this.money);
+      }
+    },
+    test() {
+      this.$refs.inputTest.focus();
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
