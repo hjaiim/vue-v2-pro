@@ -1,41 +1,42 @@
 <template>
-    <div class="keyboard zhifubao light-wheat-bg">
-        <slot name="keyBoardContent"></slot>
-        <table class="key">
-            <tr>
-                <td :class="currKey == 1 ?'td-bg':''" @click="onClick_key(1)">1</td>
-                <td :class="currKey == 2 ?'td-bg':''" @click="onClick_key(2)">2</td>
-                <td :class="currKey == 3 ?'td-bg':''" @click="onClick_key(3)">3</td>
-            </tr>
-            <tr>
-                <td :class="currKey == 4 ?'td-bg':''" @click="onClick_key(4)">4</td>
-                <td :class="currKey == 5 ?'td-bg':''" @click="onClick_key(5)">5</td>
-                <td :class="currKey == 6 ?'td-bg':''" @click="onClick_key(6)">6</td>
-            </tr>
-            <tr>
-                <td :class="currKey == 7 ?'td-bg':''" @click="onClick_key(7)">7</td>
-                <td :class="currKey == 8 ?'td-bg':''" @click="onClick_key(8)">8</td>
-                <td :class="currKey == 9 ?'td-bg':''" @click="onClick_key(9)">9</td>
+  <div class="keyboard zhifubao light-wheat-bg">
+    <slot name="keyBoardContent"></slot>
+    <table class="key">
+      <tr>
+        <td :class="currKey == 1 ?'td-bg':''" @click="onClick_key(1)">1</td>
+        <td :class="currKey == 2 ?'td-bg':''" @click="onClick_key(2)">2</td>
+        <td :class="currKey == 3 ?'td-bg':''" @click="onClick_key(3)">3</td>
+      </tr>
+      <tr>
+        <td :class="currKey == 4 ?'td-bg':''" @click="onClick_key(4)">4</td>
+        <td :class="currKey == 5 ?'td-bg':''" @click="onClick_key(5)">5</td>
+        <td :class="currKey == 6 ?'td-bg':''" @click="onClick_key(6)">6</td>
+      </tr>
+      <tr>
+        <td :class="currKey == 7 ?'td-bg':''" @click="onClick_key(7)">7</td>
+        <td :class="currKey == 8 ?'td-bg':''" @click="onClick_key(8)">8</td>
+        <td :class="currKey == 9 ?'td-bg':''" @click="onClick_key(9)">9</td>
 
-            </tr>
-            <tr>
-                <td :class="['dot-bg',currKey == 'dot' ?'td-bg':'']" @click="onClick_key('dot')">.</td>
-                <td :class="currKey === 0 ?'td-bg':''" @click="onClick_key(0)">0</td>
-                <td :class="['del-bg',currKey == 'del' ?'td-bg':'']" @click="onClick_key('del')" rowspan="2" class="back">
-                    <div class="del-border">
-                        <div class="left"></div>
-                        <div class="close">
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
+      </tr>
+      <tr>
+        <td :class="['dot-bg',currKey == 'dot' ?'td-bg':'']" @click="onClick_key('dot')">.</td>
+        <td :class="currKey === 0 ?'td-bg':''" @click="onClick_key(0)">0</td>
+        <td :class="['del-bg',currKey == 'del' ?'td-bg':'']" @click="onClick_key('del')" rowspan="2" class="back">
+          <div class="del-border">
+            <div class="left"></div>
+            <div class="close">
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
 </template>
 
 <script>
+var _timer = 0;
 export default {
   created() {},
   mounted() {},
