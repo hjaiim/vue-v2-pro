@@ -4,6 +4,10 @@
     <Mixin-test></Mixin-test>
     <!-- 自动获得焦点 -->
     <input-test></input-test>
+    <!-- nextTick -->
+    <NextTick></NextTick>
+    <!-- 键盘 -->
+    <Keyboard></Keyboard>
   </main-layout>
 </template>
 <script type="text/ecmascript-6">
@@ -11,6 +15,8 @@ import MainLayout from "common/mainLayout";
 import FilterTest from "./testApi/filters";
 import MixinTest from "./testApi/mixin.vue";
 import InputTest from "./testApi/input.vue";
+import NextTick from "./testApi/nextTick.vue";
+import Keyboard from "./testApi/keyboard.vue";
 export default {
   created() {},
   data() {
@@ -20,7 +26,9 @@ export default {
     MainLayout,
     FilterTest,
     MixinTest,
-    InputTest
+    InputTest,
+    NextTick,
+    Keyboard
   },
 
   watch: {},
