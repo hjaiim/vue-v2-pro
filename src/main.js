@@ -1,31 +1,4 @@
-/*
- * @Description: In User Settings Edit
- * @Author: your name
- * @Date: 2018-10-24 10:55:18
- * @LastEditTime: 2018-10-24 10:57:25
- * @LastEditors: your name
- */
-/*
- * @Description: In User Settings Edit
- * @Author: your name
- * @Date: 2018-10-24 10:55:17
- * @LastEditTime: 2018-10-24 10:55:17
- * @LastEditors: your name
- */
-/*
- * @Description: In User Settings Edit
- * @Author: your name
- * @Date: 2018-10-24 10:55:12
- * @LastEditTime: 2018-10-24 10:55:12
- * @LastEditors: your name
- */
-/*
- * @Description: In User Settings Edit
- * @Author: your name
- * @Date: 2018-10-24 10:55:10
- * @LastEditTime: 2018-10-24 10:55:10
- * @LastEditors: your name
- */
+
 import Vue from 'vue';
 import App from './App';
 import router from './router';

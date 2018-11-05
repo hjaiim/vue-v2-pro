@@ -8,6 +8,8 @@
     <NextTick></NextTick>
     <!-- 键盘 -->
     <Keyboard></Keyboard>
+    <!-- attra/listen -->
+    <partner></partner>
   </main-layout>
 </template>
 <script type="text/ecmascript-6">
@@ -17,6 +19,8 @@ import MixinTest from "./testApi/mixin.vue";
 import InputTest from "./testApi/input.vue";
 import NextTick from "./testApi/nextTick.vue";
 import Keyboard from "./testApi/keyboard.vue";
+import Partner from "./testApi/attrs-listen/partner";
+
 export default {
   created() {},
   data() {
@@ -28,12 +32,8 @@ export default {
     MixinTest,
     InputTest,
     NextTick,
-    Keyboard
-  },
-
-  watch: {},
-  methods: {
-    test() {}
+    Keyboard,
+    Partner
   }
 };
 </script>
