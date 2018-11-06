@@ -10,6 +10,9 @@
     <Keyboard></Keyboard>
     <!-- attra/listen -->
     <partner></partner>
+    <!-- eventBus -->
+    <partner-bus></partner-bus>
+
   </main-layout>
 </template>
 <script type="text/ecmascript-6">
@@ -20,6 +23,7 @@ import InputTest from "./testApi/input.vue";
 import NextTick from "./testApi/nextTick.vue";
 import Keyboard from "./testApi/keyboard.vue";
 import Partner from "./testApi/attrs-listen/partner";
+import PartnerBus from "./testApi/bus/partner";
 
 export default {
   created() {},
@@ -33,7 +37,8 @@ export default {
     InputTest,
     NextTick,
     Keyboard,
-    Partner
+    Partner,
+    PartnerBus
   }
 };
 </script>

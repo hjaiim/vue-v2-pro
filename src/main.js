@@ -1,4 +1,3 @@
-
 import Vue from 'vue';
 import App from './App';
 import router from './router';
@@ -27,6 +26,11 @@ import 'css/iconfont.css';
 
 import mixin from "./vueApiTest/testApi/mixin";
 Vue.mixin(mixin);
+
+
+// 挂载eventBus
+import bus from './assets/jslib/kit/bus';
+Vue.prototype.bus = bus;
 
 
 Vue.config.productionTip = false;
