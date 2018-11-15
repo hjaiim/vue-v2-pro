@@ -12,7 +12,15 @@
     <partner></partner>
     <!-- eventBus -->
     <partner-bus></partner-bus>
-
+    <!-- render -->
+    <render-test>
+      <!-- <span name='test1'>我是父组件solt内容1</span> -->
+      <span>我是父组件solt内容1</span>
+      <span>我是父组件solt内容1</span>
+      <!-- <div name='test2'>我是父组件solt内容2</div>
+      <h3 name='test3'>我是父组件solt内容3</h3>
+      <h3 name='test3'>我是父组件solt内容3</h3> -->
+    </render-test>
   </main-layout>
 </template>
 <script type="text/ecmascript-6">
@@ -24,6 +32,7 @@ import NextTick from "./testApi/nextTick.vue";
 import Keyboard from "./testApi/keyboard.vue";
 import Partner from "./testApi/attrs-listen/partner";
 import PartnerBus from "./testApi/bus/partner";
+import RenderTest from "./testApi/render";
 
 export default {
   created() {},
@@ -38,7 +47,8 @@ export default {
     NextTick,
     Keyboard,
     Partner,
-    PartnerBus
+    PartnerBus,
+    RenderTest
   }
 };
 </script>
