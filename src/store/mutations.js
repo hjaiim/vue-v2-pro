@@ -2,18 +2,20 @@
  * Created by haojun on 2018/6/3.
  */
 export default {
-  test(state){
+  test(state) {
     state.age++;
   },
-  reduce(state){
+  reduce(state) {
     state.age++;
   },
-  add(state, n){
+  add(state, n) {
     state.age += n;
   },
-  test1(state){
-    let timer = setTimeout(()=>
-    {
+  addObj(state, obj) {
+    state.age += obj.num;
+  },
+  test1(state) {
+    let timer = setTimeout(() => {
       console.log(state.age++);
       state.age++;
     }, 2000)
